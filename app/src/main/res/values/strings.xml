@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TrustMemo</string>
+    <string name="loginText">ログイン</string>
+    <string name="mailText">メールアドレス</string>
+    <string name="passText">パスワード</string>
+    <string name="registText">登録</string>
+    <string name="メモ" />
+    <string name="memoBtn_text">メモ</string>
+</resources>

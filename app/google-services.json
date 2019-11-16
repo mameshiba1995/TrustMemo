@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "845277317221",
+    "firebase_url": "https://trustmemo-9dfbd.firebaseio.com",
+    "project_id": "trustmemo-9dfbd",
+    "storage_bucket": "trustmemo-9dfbd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845277317221:android:c44a36a9a860bfda6cde8c",
+        "android_client_info": {
+          "package_name": "com.example.yuki.trustmemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "845277317221-8n8b0iifnnu6dqun3kcnsttaipfrsims.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yuki.trustmemo",
+            "certificate_hash": "b888bc519dd22b42d64cb2440e803c4290f71b43"
+          }
+        },
+        {
+          "client_id": "845277317221-hdaqijpul4f5r9c595kjs8s2vjjip0j3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtva8QdqxJBWR3_SgThAtyubtnFv7F7Ro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "845277317221-hdaqijpul4f5r9c595kjs8s2vjjip0j3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

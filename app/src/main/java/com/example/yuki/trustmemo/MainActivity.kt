@@ -14,15 +14,19 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //Firebase
     private lateinit var auth: FirebaseAuth
+    private lateinit var  ref: DatabaseReference
     //GoogleMap
     private lateinit var gMap: GoogleMap
     //現在地定数
@@ -33,7 +37,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var lastLocation: Location
     //更新内容取得リスナー
     private var locationCallback : LocationCallback? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -48,6 +51,21 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+
+        //メモボタン押下
+        memoBtn.setOnClickListener{
+            val addMemo = Intent(this, AddMemoActivity::class.java)
+            addMemo.putExtra("lat", lastLocation.latitude)
+            addMemo.putExtra("lng", lastLocation.longitude)
+            startActivity(addMemo)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if(::gMap.isInitialized){
+            putMemos()
+        }
     }
 
     //ログインしていない状態の場合ログイン画面へ
@@ -97,7 +115,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                     myLocationEnable()
                 } else {
                     //拒否
-                    showToast("現在地を取得できません")
+                    Toast.makeText(baseContext, "現在地を取得できません", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -122,10 +140,41 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
             fusedLocationProviderClient.requestLocationUpdates(locationRequest,locationCallback,null)
+            putMemos()
         }
     }
 
-    private fun showToast(msg: String){
-        val toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT)
+    //メモをRealtimeDBから呼び出す
+    private fun putMemos() {
+        ref = FirebaseDatabase.getInstance().getReference("memos")
+        gMap.clear()
+
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0!!.exists()) {
+
+                    for (h in p0.children) {
+                        val memo = h.getValue(Memo::class.java)
+                        val latLng = LatLng(memo!!.lat, memo!!.lng)
+                        val marker = MarkerOptions().position(latLng)
+                            .title(memo!!.title)
+                            .snippet(memo!!.memo)
+                            .snippet(memo!!.date)
+                            .draggable(false)
+
+                        val descriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)
+                        marker.icon(descriptor)
+
+                        gMap.addMarker(marker)
+                    }
+                }
+
+            }
+
+        })
     }
 }

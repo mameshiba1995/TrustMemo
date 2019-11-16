@@ -4,6 +4,8 @@
     <string name="mailText">メールアドレス</string>
     <string name="passText">パスワード</string>
     <string name="registText">登録</string>
-    <string name="メモ" />
     <string name="memoBtn_text">メモ</string>
+    <string name="title_text">タイトル</string>
+    <string name="save_text" >保存</string>
+    <string name="return_text" >戻る</string>
 </resources>

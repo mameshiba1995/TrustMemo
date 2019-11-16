@@ -29,7 +29,7 @@ class AddMemoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_memo)
 
         auth = FirebaseAuth.getInstance()
-        var user = auth.currentUser
+        val user = auth.currentUser
         loginCheck(user)
 
         memoList = mutableListOf()

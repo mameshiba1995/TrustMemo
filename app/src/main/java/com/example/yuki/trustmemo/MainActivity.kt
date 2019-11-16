@@ -6,6 +6,8 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -179,5 +181,30 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item?.itemId){
+            R.id.myPageMenu -> {
+                val mypage = Intent(this, MyPageActivity::class.java)
+                startActivity(mypage)
+            }
+            R.id.userListMenu -> {
+                val userlist = Intent(this, UserListActivity::class.java)
+                startActivity(userlist)
+            }
+            R.id.logoutMenu -> {
+                auth.signOut()
+                Toast.makeText(baseContext, "ログアウトしました", Toast.LENGTH_SHORT).show()
+                val logout = Intent(this, LoginActivity::class.java)
+                startActivity(logout)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

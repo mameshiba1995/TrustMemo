@@ -39,7 +39,7 @@ class AddMemoActivity : AppCompatActivity() {
 
         saveBtn.setOnClickListener{
             //メモをRealtimeDBに保存
-            saveMemo()
+            saveMemo(user)
         }
 
         returnBtn.setOnClickListener{
@@ -47,14 +47,14 @@ class AddMemoActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveMemo(){
+    private fun saveMemo(user: FirebaseUser?){
 
         val title = editTitleName.text.toString().trim()
         val memo = editMemo.text.toString().trim()
         val lat = intent.getDoubleExtra("lat", 0.0)
         val lng = intent.getDoubleExtra("lng", 0.0)
         val date = SimpleDateFormat("yyyy/MM/dd HH:mm").format(Date())
-
+        val email = user!!.email.toString()
         if(title.isEmpty()){
             editTitleName.error = "タイトルを入力してください"
             return
@@ -68,7 +68,7 @@ class AddMemoActivity : AppCompatActivity() {
 
         val memoId = ref.push().key
 
-        val addMemo = Memo(memoId.toString(), title, date, memo, lat, lng)
+        val addMemo = Memo(memoId.toString(), title, date, memo, lat, lng, email)
         ref.child(memoId.toString()).setValue(addMemo).addOnCanceledListener {
 
         }

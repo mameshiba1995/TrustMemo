@@ -155,26 +155,29 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
+                auth = FirebaseAuth.getInstance()
+                val user = auth.currentUser
                 if (p0!!.exists()) {
 
                     for (h in p0.children) {
                         val memo = h.getValue(Memo::class.java)
-                        val latLng = LatLng(memo!!.lat, memo!!.lng)
-                        val marker = MarkerOptions().position(latLng)
-                            .title(memo!!.title)
-                            .snippet(memo!!.memo)
-                            .snippet(memo!!.date)
-                            .draggable(false)
+                        //ユーザアドレスとメモのアドレスが一致した時
+                        if(user!!.email.toString().equals(memo!!.email)) {
+                            val latLng = LatLng(memo!!.lat, memo!!.lng)
+                            val marker = MarkerOptions().position(latLng)
+                                .title(memo!!.title)
+                                .snippet(memo!!.memo + "/n" + memo!!.date)
+                                .draggable(false)
 
-                        val descriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)
-                        marker.icon(descriptor)
+                            val descriptor =
+                                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)
+                            marker.icon(descriptor)
 
-                        gMap.addMarker(marker)
+                            gMap.addMarker(marker)
+                        }
                     }
                 }
-
             }
-
         })
     }
 }

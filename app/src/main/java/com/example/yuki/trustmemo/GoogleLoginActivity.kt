@@ -9,7 +9,6 @@ import com.google.android.gms.auth.api.Auth
 import android.content.Intent
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
-import android.view.View
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_google_login.*
@@ -20,7 +19,7 @@ class GoogleLoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFai
     //Firebase
     private lateinit var auth: FirebaseAuth
 
-    private var mGoogleApiClient: GoogleApiClient? = null
+    private lateinit var mGoogleApiClient: GoogleApiClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

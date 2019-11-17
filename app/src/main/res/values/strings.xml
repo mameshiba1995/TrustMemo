@@ -3,7 +3,7 @@
     <string name="loginText">ログイン</string>
     <string name="mailText">メールアドレス</string>
     <string name="passText">パスワード</string>
-    <string name="registText">登録</string>
+    <string name="registText">新規登録</string>
     <string name="memoBtn_text">メモ</string>
     <string name="title_text">タイトル</string>
     <string name="save_text">保存</string>
@@ -11,4 +11,5 @@
     <string name="logout_text">ログアウト</string>
     <string name="myPage_text">マイページ</string>
     <string name="list_text">一覧</string>
+    <string name="openAccount_text">公開</string>
 </resources>

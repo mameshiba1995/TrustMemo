@@ -23,10 +23,10 @@ class LoginActivity : AppCompatActivity() {
             val mail = loginMailEdit.text.toString()
             val pass = loginPassEdit.text.toString()
 
-            if(mail.equals("")){
+            if(mail.isNullOrBlank()){
                 Toast.makeText(baseContext, "メールアドレスを入力してください", Toast.LENGTH_SHORT).show()
 
-            }else if(pass.equals("")) {
+            }else if(pass.isNullOrBlank()) {
                 Toast.makeText(baseContext, "パスワードを入力してください", Toast.LENGTH_SHORT).show()
 
             } else {
@@ -42,7 +42,6 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(baseContext, "メールアドレスまたはパスワードが違います。", Toast.LENGTH_SHORT).show()
 
                         }
-
                     }
             }
         }
@@ -52,10 +51,10 @@ class LoginActivity : AppCompatActivity() {
             val mail = loginMailEdit.text.toString()
             val pass = loginPassEdit.text.toString()
 
-            if(mail.equals("")){
+            if(mail.isNullOrBlank()){
                 Toast.makeText(baseContext, "メールアドレスを入力してください", Toast.LENGTH_SHORT).show()
 
-            }else if(pass.equals("")) {
+            }else if(pass.isNullOrBlank()) {
                 Toast.makeText(baseContext, "パスワードを入力してください", Toast.LENGTH_SHORT).show()
 
             }else if(pass.length < 6) {

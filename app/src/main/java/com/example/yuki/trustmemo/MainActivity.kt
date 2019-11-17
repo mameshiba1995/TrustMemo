@@ -2,6 +2,7 @@ package com.example.yuki.trustmemo
 
 import android.Manifest
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
@@ -41,10 +42,15 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     //更新内容取得リスナー
     private var locationCallback : LocationCallback? = null
 
+    //共有プレファレンス
+//    private lateinit var pref: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+//        pref = getSharedPreferences("listUser", AppCompatActivity.MODE_PRIVATE)
 
         auth = FirebaseAuth.getInstance()
         var user = auth.currentUser
@@ -160,6 +166,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onDataChange(p0: DataSnapshot) {
                 auth = FirebaseAuth.getInstance()
                 val user = auth.currentUser
+//                val listUser  = pref.getString("listUser", "")
                 if (p0!!.exists()) {
 
                     for (h in p0.children) {
@@ -179,7 +186,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                             gMap.addMarker(marker)
                         }
                     }
+
                 }
+//                val editor = pref.edit()
+//                editor.remove("listUser")
             }
         })
     }

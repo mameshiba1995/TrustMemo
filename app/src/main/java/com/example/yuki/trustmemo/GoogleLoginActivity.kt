@@ -63,7 +63,6 @@ class GoogleLoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFai
                 val account = result.signInAccount
                 firebaseAuthWithGoogle(account!!)
             } else {
-                println(result.status)
                 Toast.makeText(this, "認証に失敗しました", Toast.LENGTH_SHORT).show()
             }
         }

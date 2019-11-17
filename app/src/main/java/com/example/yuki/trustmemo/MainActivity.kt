@@ -18,6 +18,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -168,7 +169,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                             val latLng = LatLng(memo!!.lat, memo!!.lng)
                             val marker = MarkerOptions().position(latLng)
                                 .title(memo!!.title)
-                                .snippet(memo!!.memo + "/n" + memo!!.date)
+                                .snippet(memo!!.memo)
                                 .draggable(false)
 
                             val descriptor =

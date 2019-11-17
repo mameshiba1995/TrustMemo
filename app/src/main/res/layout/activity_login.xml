@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleSignInBtn"
+    <Button
+        android:id="@+id/etcSignInBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="その他ログイン"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />

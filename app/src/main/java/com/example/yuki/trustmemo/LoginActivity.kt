@@ -75,5 +75,11 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        etcSignInBtn.setOnClickListener{
+
+            val gooLogin =  Intent(this, GoogleLoginActivity::class.java)
+            startActivity(gooLogin)
+        }
+
     }
 }

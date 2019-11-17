@@ -87,8 +87,4 @@ class MyPageActivity : AppCompatActivity() {
                 startActivity(login)
             }
         }
-
-
-
-
 }

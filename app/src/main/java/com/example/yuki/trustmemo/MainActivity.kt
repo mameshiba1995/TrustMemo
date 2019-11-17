@@ -36,12 +36,12 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     //現在地定数
     private val MY_PERMISSION_REQUEST_ACCESS_FINE_LOCATION = 1
 
+    //位置情報取得
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    //位置情報取得オブジェクト
+    //現在位置情報取得
     private lateinit var lastLocation: Location
     //更新内容取得リスナー
     private var locationCallback : LocationCallback? = null
-
     //共有プレファレンス
 //    private lateinit var pref: SharedPreferences
 
